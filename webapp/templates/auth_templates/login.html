@@ -1,0 +1,38 @@
+{% extends "auth_templates/base.html" %} {% block content %}
+<h2 class="mt-5 text-center">Login</h2>
+<form method="POST">
+  {{ form.hidden_tag() }}
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    {{ form.username(class="form-control") }}
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <div class="input-group">
+      {{ form.password(id="password", class="form-control") }}
+      <button type="button" class="btn btn-outline-secondary position-absolute top-50 end-0 translate-middle-y" id="togglePassword" style="right: 10px; z-index: 10; background-color: transparent; border: none">
+        <i class="fa fa-sm fa-eye"></i>
+      </button>
+    </div>
+  </div>
+  <div class="d-grid gap-2">{{ form.submit(class="btn btn-primary")}}</div>
+</form>
+
+<script>
+  const togglePassword = document.getElementById("togglePassword");
+  const passwordField = document.getElementById("password");
+
+  togglePassword.addEventListener("click", function (e) {
+    const type = passwordField.type === "password" ? "text" : "password";
+    passwordField.type = type;
+
+    if (type === "password") {
+      togglePassword.innerHTML = '<i class="fa fa-sm fa-eye"></i>';
+    } else {
+      togglePassword.innerHTML = '<i class="fa fa-sm fa-eye-slash"></i>';
+    }
+    passwordField.focus();
+  });
+</script>
+
+{% endblock content %}

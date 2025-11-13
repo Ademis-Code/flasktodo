@@ -1,0 +1,18 @@
+<script>
+  var editModal = document.getElementById("editModal");
+  editModal.addEventListener("show.bs.modal", function (event) {
+    var button = event.relatedTarget;
+
+    var todoId = button.getAttribute("data-todo-id");
+    var todoTask = button.getAttribute("data-todo-task");
+
+    var modalTitle = editModal.querySelector(".modal-title");
+    var taskInput = editModal.querySelector("#taskInput");
+    var editForm = editModal.querySelector("#editForm");
+
+    modalTitle.textContent = "Edit Tugas ID: " + todoId;
+    taskInput.value = todoTask;
+
+    editForm.action = "/edit/" + todoId;
+  });
+</script>
